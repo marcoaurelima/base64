@@ -1,4 +1,5 @@
 #include <iostream>
+#include <sstream>
 #include <vector>
 #include <bitset>
 
@@ -12,7 +13,9 @@ string b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 string base64encoder(vector<long int> input)
 {
+    stringstream result;
 
+    /*
     UCHAR byte_0 = (input[0] & 0xFC) >> 2;  // 0xFC = 11111100
     UCHAR byte_1 = (input[0] & 0x03) << 4;  // 0x03 = 00000011
     UCHAR byte_2 = (input[1] & 0xF0) >> 4;  // 0xF0 = 11110000
@@ -21,18 +24,24 @@ string base64encoder(vector<long int> input)
     UCHAR byte_5 = (input[2] & 0x3F) >> 0;  // 0x3F = 00111111
 
     cout << b64[byte_0] << b64[byte_1 + byte_2] << b64[byte_3 + byte_4] << b64[byte_5] << "\n";
+    */
 
 
-    /*
-    int count = 0;
-    for(auto i=0;i<input.size();i++)
+    for(auto i=0;i<input.size();i+=3)
     {
-        if(++count == 3)
-        {
-            unsigned char byte_1 =
-        }
+        printf("*%d\n", i);
+        UCHAR byte_0 = (input[i+0] & 0xFC) >> 2;  // 0xFC = 11111100
+        UCHAR byte_1 = (input[i+0] & 0x03) << 4;  // 0x03 = 00000011
+        UCHAR byte_2 = (input[i+1] & 0xF0) >> 4;  // 0xF0 = 11110000
+        UCHAR byte_3 = (input[i+1] & 0x0F) << 2;  // 0x0F = 00001111
+        UCHAR byte_4 = (input[i+2] & 0xC0) >> 6;  // 0xC0 = 11000000
+        UCHAR byte_5 = (input[i+2] & 0x3F) >> 0;  // 0x3F = 00111111
+
+        result << b64[byte_0] << b64[byte_1 + byte_2] << b64[byte_3 + byte_4] << b64[byte_5];
     }
-*/
+
+
+    cout << result.str();
 
     return "";
 
