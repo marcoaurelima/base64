@@ -12,22 +12,16 @@ string b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 string base64encoder(vector<long int> input)
 {
-    // 0xFC = 11111100
-    // 0x03 = 00000011
-    // 0xF0 = 11110000
-    // 0x0F = 00001111
-    // 0xC0 = 11000000
-    // 0x3F = 00111111
 
-
-    UCHAR byte_0 = (input[0] & 0xFC) >> 2;
-    UCHAR byte_1 = (input[0] & 0x03) << 4;
-    UCHAR byte_2 = (input[1] & 0xF0) >> 4;
-    UCHAR byte_3 = (input[1] & 0x0F) << 2;
-    UCHAR byte_4 = (input[2] & 0xC0) >> 6;
-    UCHAR byte_5 = (input[2] & 0x3F) >> 0;
+    UCHAR byte_0 = (input[0] & 0xFC) >> 2;  // 0xFC = 11111100
+    UCHAR byte_1 = (input[0] & 0x03) << 4;  // 0x03 = 00000011
+    UCHAR byte_2 = (input[1] & 0xF0) >> 4;  // 0xF0 = 11110000
+    UCHAR byte_3 = (input[1] & 0x0F) << 2;  // 0x0F = 00001111
+    UCHAR byte_4 = (input[2] & 0xC0) >> 6;  // 0xC0 = 11000000
+    UCHAR byte_5 = (input[2] & 0x3F) >> 0;  // 0x3F = 00111111
 
     cout << b64[byte_0] << b64[byte_1 + byte_2] << b64[byte_3 + byte_4] << b64[byte_5] << "\n";
+
 
     /*
     int count = 0;
@@ -47,8 +41,8 @@ string base64encoder(vector<long int> input)
 
 int main()
 {
-
-    base64encoder(vector<long int>{'D','f','y',4,5,6});
+    auto nome = vector<long int>{'m','a','r','c','o','A','U','R','E','L','I','O'};
+    base64encoder(nome);
 
     return 0;
 }
