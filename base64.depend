@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1654143170 source:c:\users\marco\documents\base64\main.cpp
+	<iostream>
+	<sstream>
+	<vector>
+	<bitset>
+
