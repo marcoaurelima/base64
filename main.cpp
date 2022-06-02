@@ -15,7 +15,7 @@ string base64encoder(vector<long int> input)
 {
     stringstream result;
 
-    for(auto i=0;i<input.size()/3;++i)
+    for(size_t i=0;i<input.size()/3;++i)
     {
         UCHAR byte_0 = (input[(3*i)+0] & 0xFC) >> 2;  // 0xFC = 11111100
         UCHAR byte_1 = (input[(3*i)+0] & 0x03) << 4;  // 0x03 = 00000011
@@ -52,13 +52,11 @@ string base64encoder(vector<long int> input)
         UCHAR byte_0 = (input[input.size()-1] & 0xFC) >> 2;  // 0xFC = 11111100
         UCHAR byte_1 = (input[input.size()-1] & 0x03) << 4;  // 0x03 = 00000011
         UCHAR byte_2 = (input[input.size()-2] & 0xF0) >> 4;  // 0xF0 = 11110000
-        UCHAR byte_3 = (input[input.size()-2] & 0x0F) << 2;  // 0x0F = 00001111
-        UCHAR byte_4 = (input[input.size()-3] & 0xC0) >> 6;  // 0xC0 = 11000000
-        UCHAR byte_5 = (input[input.size()-3] & 0x3F) >> 0;  // 0x3F = 00111111
+        UCHAR byte_3 = (input[input.size()-3] & 0xC0) >> 6;  // 0xC0 = 11000000
+        UCHAR byte_4 = '=';
 
 
-
-        result << b64[byte_0] << b64[byte_1 + byte_2] << b64[byte_4] << '=';// b64[byte_5];
+        result << b64[byte_0] << b64[byte_1 + byte_2] << b64[byte_3] << byte_4;// b64[byte_5];
 
         cout << "sobrou 2:\n";
         return result.str();
@@ -77,7 +75,7 @@ int main()
 
     auto res = base64encoder(nome);
 
-    cout << "[bWFyY28=] \n " << res << "\n";
+    cout << "[bWFyY28gQVVSRUxJTw==] \n " << res << "\n";
 
     return 0;
 }
