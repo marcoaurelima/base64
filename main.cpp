@@ -31,6 +31,7 @@ string base64encoder(vector<long int> input)
 
     if(input.size()%3 == 1)
     {
+        puts("sobra 1");
         UCHAR byte_0 = (input[input.size()-1] & 0xFC) >> 2;
         UCHAR byte_1 = (input[input.size()-1] & 0x03) << 4;
         UCHAR byte_2 = '=';
@@ -41,9 +42,10 @@ string base64encoder(vector<long int> input)
 
     if(input.size()%3 == 2)
     {
+        puts("sobra 2");
 
-        UCHAR byte_0 = (input[input.size()-1] & 0xFC) >> 2;  // 0xFC = 11111100
-        UCHAR byte_1 = (input[input.size()-1] & 0x03) << 4;  // 0x03 = 00000011
+        UCHAR byte_0 = (input[input.size()-2] & 0xFC) >> 2;  // 0xFC = 11111100
+        UCHAR byte_1 = (input[input.size()-2] & 0x03) << 4;  // 0x03 = 00000011
         UCHAR byte_2 = (input[input.size()-1] & 0xF0) >> 4;  // 0xF0 = 11110000
         UCHAR byte_3 = (input[input.size()-1] & 0x0F) << 2;  // 0x0F = 00001111
         UCHAR byte_4 = '=';
@@ -57,7 +59,7 @@ string base64encoder(vector<long int> input)
 
 int main()
 {
-    string input = "Michel Machado Monteiro";
+    string input = "Michel Machado Monteiro @!";
     vector<long int> nome;
     for(auto i : input) { nome.push_back(i); }
 
