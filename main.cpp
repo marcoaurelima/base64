@@ -4,12 +4,9 @@
 #include <bitset>
 
 using UCHAR = unsigned char;
-
 using namespace std;
 
-
-
-string base64encoder(vector<long int> input)
+string base64encoder(string input)
 {
     string b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
     stringstream result;
@@ -26,8 +23,6 @@ string base64encoder(vector<long int> input)
         result << b64[byte_0] << b64[byte_1 + byte_2] << b64[byte_3 + byte_4] << b64[byte_5];
     }
 
-    if(input.size()%3 == 0) { return result.str(); }
-
     if(input.size()%3 == 1)
     {
         UCHAR byte_0 = (input[input.size()-1] & 0xFC) >> 2; // 0xFC = 11111100
@@ -35,8 +30,7 @@ string base64encoder(vector<long int> input)
         UCHAR byte_2 = '=';
         UCHAR byte_3 = '=';
         result << b64[byte_0] << b64[byte_1] << byte_2 << byte_3;
-    }
-
+    } else
     if(input.size()%3 == 2)
     {
         UCHAR byte_0 = (input[input.size()-2] & 0xFC) >> 2;  // 0xFC = 11111100
@@ -50,7 +44,7 @@ string base64encoder(vector<long int> input)
     return result.str();
 }
 
-string base64decoder(vector<long int> input)
+string base64encoder(string input)
 {
     string b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
     stringstream result;
@@ -89,13 +83,13 @@ string base64decoder(vector<long int> input)
 }
 
 
+
+
 int main()
 {
     string input = "michel machado monteiro";
-    vector<long int> nome;
-    for(auto i : input) { nome.push_back(i); }
 
-    auto res = base64encoder(nome);
+    auto res = base64encoder(input);
 
     cout << res << "\n";
 
