@@ -1,7 +1,2 @@
-<<<<<<< HEAD
-bin/*
-obj/*
-=======
-bin/
-obj/
->>>>>>> 79219ee4a8b984f3f854df5ea3b312d5e11487c2
+main.cpp
+base.exe
