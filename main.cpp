@@ -5,12 +5,12 @@ using namespace std;
 
 int main()
 {
-    string input = "marcoaureliolima";
+    string input = "marcoaurelima";
 
     auto cod = base64encoder(input);
     cout << "[cod] " << cod << "\n";
     auto dec = base64decoder(cod);
-    cout << "[dec] " << dec << "|\n";
+    cout << "[dec] " << dec << "\n";
 
     return 0;
 }

@@ -7,7 +7,9 @@
 #include <sstream>
 #include <iostream>
 
-std::string base64encoder(std::string input);
-std::string base64decoder(std::string input);
+std::string base64encoder(const std::string& input);
+std::string base64decoder(const std::string& input);
+
+bool isBase64String(const std::string& input);
 
 #endif
