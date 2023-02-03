@@ -41,7 +41,7 @@ std::string base64encoder(const std::string& input)
         output << charset[byte_0] << charset[byte_1 + byte_2] << charset[byte_3] << byte_4;
     }
 
-    return output.str();
+  return output.str();
 }
 
 bool isBase64String(const std::string& input)
