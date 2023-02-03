@@ -12,4 +12,4 @@ encode:
 
 decode:
 	@g++ main.cpp $(DEP) -o main
-	./main --decode "bWFyY28gYXVyZWxpbyBsaW1hIA=="
+	./main --decode "aGVsbG8sIHdvcmxkIQ=="
