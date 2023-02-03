@@ -5,7 +5,7 @@ using namespace std;
 
 int main()
 {
-    string input = "marcoaurelima";
+    string input = "Olá, mundo!";
 
     auto cod = base64encoder(input);
     cout << "[cod] " << cod << "\n";

@@ -4,8 +4,8 @@
 // ***************************************** //
 #include "base64.h"
 
-using  UCHAR = unsigned char;
-std::string b64   = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+using UCHAR = unsigned char;
+std::string charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
 
 std::string base64encoder(const std::string& input)
 {
@@ -20,7 +20,7 @@ std::string base64encoder(const std::string& input)
         UCHAR byte_4 = (input[(3*i)+2] & 0xC0) >> 6;  
         UCHAR byte_5 = (input[(3*i)+2] & 0x3F) >> 0;  
 
-        output << b64[byte_0] << b64[byte_1 + byte_2] << b64[byte_3 + byte_4] << b64[byte_5];
+        output << charset[byte_0] << charset[byte_1 + byte_2] << charset[byte_3 + byte_4] << charset[byte_5];
     }
 
     if(input.size()%3 == 1)
@@ -29,7 +29,7 @@ std::string base64encoder(const std::string& input)
         UCHAR byte_1 = (input[input.size()-1] & 0x03) << 4; 
         UCHAR byte_2 = '=';
         UCHAR byte_3 = '=';
-        output << b64[byte_0] << b64[byte_1] << byte_2 << byte_3;
+        output << charset[byte_0] << charset[byte_1] << byte_2 << byte_3;
     } else
     if(input.size()%3 == 2)
     {
@@ -38,7 +38,7 @@ std::string base64encoder(const std::string& input)
         UCHAR byte_2 = (input[input.size()-1] & 0xF0) >> 4; 
         UCHAR byte_3 = (input[input.size()-1] & 0x0F) << 2; 
         UCHAR byte_4 = '=';
-        output << b64[byte_0] << b64[byte_1 + byte_2] << b64[byte_3] << byte_4;
+        output << charset[byte_0] << charset[byte_1 + byte_2] << charset[byte_3] << byte_4;
     }
 
     return output.str();
@@ -48,7 +48,7 @@ bool isBase64String(const std::string& input)
 {
     for(size_t i=0;i<input.size();++i)
     {
-        if(b64.find(input[i]) == std::string::npos)
+        if(charset.find(input[i]) == std::string::npos)
         {
             return false;
         }
@@ -64,10 +64,10 @@ std::string base64decoder(const std::string& input)
 
     for(size_t i=0;i<input.size()/4;++i)
     {
-        size_t index_0 = b64.find(input[(4*i)+0]);
-        size_t index_1 = b64.find(input[(4*i)+1]);
-        size_t index_2 = b64.find(input[(4*i)+2]);
-        size_t index_3 = b64.find(input[(4*i)+3]);
+        size_t index_0 = charset.find(input[(4*i)+0]);
+        size_t index_1 = charset.find(input[(4*i)+1]);
+        size_t index_2 = charset.find(input[(4*i)+2]);
+        size_t index_3 = charset.find(input[(4*i)+3]);
 
         UCHAR byte_0 = (index_0 & 0x3F) << 2;
         UCHAR byte_1 = (index_1 & 0x30) >> 4;
