@@ -20,7 +20,8 @@ std::string base64encoder(const std::string& input)
         UCHAR byte_4 = (input[(3*i)+2] & 0xC0) >> 6;  
         UCHAR byte_5 = (input[(3*i)+2] & 0x3F) >> 0;  
 
-        output << charset[byte_0] << charset[byte_1 + byte_2] << charset[byte_3 + byte_4] << charset[byte_5];
+        output << charset[byte_0] << charset[byte_1 + byte_2]  
+               << charset[byte_3 + byte_4] << charset[byte_5];
     }
 
     if(input.size()%3 == 1)
@@ -38,7 +39,8 @@ std::string base64encoder(const std::string& input)
         UCHAR byte_2 = (input[input.size()-1] & 0xF0) >> 4; 
         UCHAR byte_3 = (input[input.size()-1] & 0x0F) << 2; 
         UCHAR byte_4 = '=';
-        output << charset[byte_0] << charset[byte_1 + byte_2] << charset[byte_3] << byte_4;
+        output << charset[byte_0] << charset[byte_1 + byte_2] 
+               << charset[byte_3] << byte_4;
     }
 
   return output.str();
@@ -76,7 +78,8 @@ std::string base64decoder(const std::string& input)
         UCHAR byte_4 = (index_2 & 0x03) << 6;
         UCHAR byte_5 = (index_3 & 0x3F) >> 0;
 
-        output << (char)(byte_0 + byte_1) << (char)(byte_2 + byte_3) << (char)(byte_4 + byte_5);
+        output << (char)(byte_0 + byte_1) << (char)(byte_2 + byte_3)
+               << (char)(byte_4 + byte_5);
     }
 
     std::string out = output.str();
