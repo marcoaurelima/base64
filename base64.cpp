@@ -80,9 +80,11 @@ std::string base64decoder(const std::string& input)
     }
 
     std::string out = output.str();
+
+    // Remover sobras
     for(size_t i=input.size()-1; i>=input.size()-2; i--)
     {
-        if(input[i] == '='){ out.pop_back(); }
+        if(input[i] == '='){ out.pop_back();}
     }
 
     return out;
